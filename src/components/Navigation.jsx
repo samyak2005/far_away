@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-export default function Navigation({ onNavigate, trips, currentTrip }) {
+export default function Navigation({ trips, currentTrip }) {
   return (
     <nav className="nav">
-      <button 
-        onClick={() => onNavigate("home")}
-        className={!currentTrip ? "active" : ""}
+      <NavLink 
+        to="/"
+        className={({ isActive }) => isActive ? "active" : ""}
       >
         Home
-      </button>
+      </NavLink>
       {trips.map(trip => (
-        <button 
-          key={trip.id} 
-          onClick={() => onNavigate("form", trip.id)}
-          className={currentTrip?.id === trip.id ? "active" : ""}
+        <NavLink
+          key={trip.id}
+          to={`/${trip.name.toLowerCase().replace(/\s+/g, '-')}`}
+          className={({ isActive }) => isActive ? "active" : ""}
         >
           {trip.name}
-        </button>
+        </NavLink>
       ))}
     </nav>
   );
