@@ -62,11 +62,7 @@ Far Away is a modern, intuitive travel packing list application that helps you o
    npm run dev
    ```
    The application will be available at `http://localhost:5173`
-
-4. **Build for Production**
-   ```bash
-   npm run build
-   ```
+   
 
 ## 💡 Usage
 
