@@ -28,41 +28,40 @@ h1 {
   text-align: center;
   background-color: #f4a226;
   font-family: "Monoton";
-  font-size: 7rem;
+  font-size: 8rem;
   text-transform: uppercase;
   font-weight: 400;
-  word-spacing: 20px;
+  word-spacing: 30px;
   letter-spacing: -5px;
-  padding: 2.4rem 0;
+  padding: 2.4rem 0 0 0;
+  margin-bottom: 0;
 }
 
 .nav {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 2.4rem;
+  gap: 1.2rem;
   padding: 1.2rem;
   background-color: #f4a226;
+  flex-wrap: wrap;
 }
 
 .nav a {
   background-color: #ffebb3;
   color: #5a3e2b;
-  padding: 1.2rem 2.4rem;
+  padding: 0.8rem 2.4rem;
   border: none;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
 .nav a:hover {
-  background-color: #e5771f;
-  color: #ffebb3;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav a.active {
@@ -74,11 +73,12 @@ h1 {
 
 .add-form {
   background-color: #e5771f;
-  padding: 2.8rem 0;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
 h3 {
@@ -103,14 +103,14 @@ input {
 .list {
   background-color: #5a3e2b;
   color: #ffebb3;
-  padding: 4rem 0;
+  padding: 2.4rem 0;
   height: calc(100vh - 330px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3.2rem;
   overflow-y: auto;
   position: relative;
+  padding-bottom: 60px;
 }
 
 .list ul {
@@ -119,27 +119,47 @@ input {
   max-width: 1200px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2.4rem;
+  gap: 1.2rem;
   justify-content: center;
   align-content: start;
-  padding: 0 3.2rem;
+  padding: 0 2.4rem;
+  margin-bottom: 2rem;
 }
 
 .list li {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 1.2rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid #76c7ad33;
-  font-size: 1.8rem;
+  gap: 1.4rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.8rem;
+  background-color: #76c7ad20;
+  border: 1px solid #76c7ad33;
+  transition: all 0.3s;
+  min-width: 280px;
+}
+
+.list li:hover {
+  transform: translateY(-2px);
+  background-color: #76c7ad30;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .list input[type="checkbox"] {
   height: 2rem;
   width: 2rem;
   accent-color: #e5771f;
-  margin-right: 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.list span {
+  flex: 1;
+  font-size: 1.8rem;
+  color: #ffebb3;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list li button {
@@ -150,14 +170,22 @@ input {
   padding: 0.8rem;
   transform: translateY(2px);
   color: #ffebb3;
+  opacity: 0.7;
+  transition: all 0.3s;
 }
 
 .list li button:hover {
   color: #e5771f;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .list li.packed {
-  background-color: transparent;
+  background-color: #76c7ad10;
+  border-color: #76c7ad20;
+}
+
+.list li.packed span {
   text-decoration: line-through;
   color: #76c7ad;
 }
@@ -169,17 +197,42 @@ input {
   transform: translateX(-50%);
   display: flex;
   gap: 1.2rem;
-  padding: 1.2rem 0;
+  padding: 1.6rem 2.4rem;
+  background-color: #5a3e2b;
+  border: 1px solid #76c7ad33;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.actions select {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 0.8rem 1.6rem;
+}
+
+.actions button {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  padding: 0.8rem 1.6rem;
+  font-weight: 700;
+}
+
+.actions button:hover,
+.actions select:hover {
+  background-color: #e5771f;
+  color: #ffebb3;
 }
 
 .stats {
   background-color: #76c7ad;
   text-align: center;
   font-weight: 700;
-  padding: 2.4rem 0;
+  padding: 2rem 0;
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 2;
 }
 
 /* Home Page Styles */
@@ -187,7 +240,7 @@ input {
   background-color: #5a3e2b;
   min-height: 585px;
   height: 100%;
-  padding: 4rem 2.4rem;
+  padding: 2.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,65 +250,60 @@ input {
 .create-trip {
   text-align: center;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
 }
 
 .trip-form {
   display: flex;
-  gap: 1.6rem;
+  gap: 1.2rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .trip-form input {
-  min-width: 300px;
+  min-width: 250px;
   flex: 1;
 }
 
 .trips-list {
   width: 100%;
-  max-width: 1400px;
-  padding: 0 3.2rem;
+  max-width: 1200px;
+  padding: 0 2rem;
 }
 
 .trips-list h2 {
   color: #ffebb3;
-  font-size: 3.6rem;
+  font-size: 3.2rem;
   text-align: center;
-  margin-bottom: 3.2rem;
+  margin-bottom: 2.4rem;
 }
 
 .no-trips {
   text-align: center;
   color: #ffebb3;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-style: italic;
-  padding: 3.2rem;
+  padding: 2rem;
 }
 
 .trips-list ul {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.4rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
   margin-top: 2.4rem;
 }
 
 .trips-list li {
   background-color: #ffebb3;
-  padding: 2.4rem;
-  border-radius: 1.2rem;
+  padding: 2rem;
+  border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1.2rem;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.trips-list li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
 }
 
 .trip-info {
@@ -263,29 +311,26 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1.2rem;
 }
 
 .trip-name {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #5a3e2b;
   font-weight: 600;
 }
 
 .items-count {
   background-color: #76c7ad;
-  padding: 0.6rem 1.6rem;
-  border-radius: 1.2rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 1rem;
   color: #ffebb3;
-  font-weight: 600;
 }
 
 .clear-all {
-  margin-top: 3.2rem;
+  margin-top: 2.4rem;
   background-color: #e5771f;
   color: #ffebb3;
-  font-size: 1.8rem;
-  padding: 1.4rem 3.2rem;
 }
 
 /* Mobile Optimizations */
@@ -328,14 +373,6 @@ input {
 
   .trip-form input {
     min-width: 200px;
-  }
-
-  .trips-list h2 {
-    font-size: 2.8rem;
-  }
-
-  .no-trips {
-    font-size: 1.8rem;
   }
 }
 
@@ -392,14 +429,5 @@ input {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.8rem;
-  }
-
-  .trips-list h2 {
-    font-size: 2.4rem;
-  }
-
-  .no-trips {
-    font-size: 1.6rem;
-    padding: 1.6rem;
   }
 }
