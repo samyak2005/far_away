@@ -221,6 +221,34 @@ input {
   color: #ffebb3;
 }
 
+.trips-list h2 {
+  color: #ffebb3;
+  font-size: 3.2rem;
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+
+.no-trips {
+  text-align: center;
+  color: #ffebb3;
+  font-size: 2rem;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.trip-name {
+  font-size: 2rem;
+  color: #5a3e2b;
+  font-weight: 600;
+}
+
+.items-count {
+  background-color: #76c7ad;
+  padding: 0.4rem 1.2rem;
+  border-radius: 1rem;
+  color: #ffebb3;
+}
+
 /* Mobile Optimizations */
 @media (max-width: 768px) {
   html {
@@ -261,6 +289,14 @@ input {
 
   .trip-form input {
     min-width: 200px;
+  }
+
+  .trips-list h2 {
+    font-size: 2.8rem;
+  }
+
+  .no-trips {
+    font-size: 1.8rem;
   }
 }
 
@@ -317,5 +353,14 @@ input {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.8rem;
+  }
+
+  .trips-list h2 {
+    font-size: 2.4rem;
+  }
+
+  .no-trips {
+    font-size: 1.6rem;
+    padding: 1.6rem;
   }
 }
