@@ -9,8 +9,6 @@ Far Away is a modern, intuitive travel packing list application that helps you o
 - **🧳 Multiple Trip Management**
   - Create and manage multiple trips simultaneously
   - Each trip has its own dedicated packing list
-  - Easy navigation between different trips
-  - Clean and intuitive trip organization
 
 - **📋 Smart Packing Lists**
   - Add items with quantity
