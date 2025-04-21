@@ -34,12 +34,13 @@ h1 {
   font-weight: 400;
   word-spacing: 30px;
   letter-spacing: -5px;
-  padding: 2.4rem 0;
+  padding: 2.4rem 0 0 0;
+  margin-bottom: 0;
 }
 
 .add-form {
   background-color: #e5771f;
-  padding: 2.8rem 0;
+  padding: 1.5rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,6 +50,7 @@ h1 {
 h3 {
   margin-right: 1.6rem;
   font-size: 2.4rem;
+  white-space: nowrap;
 }
 
 button,
@@ -68,18 +70,47 @@ input {
 .add-form button {
   text-transform: uppercase;
   background-color: #76c7ad;
+
 }
 
 .list {
   background-color: #5a3e2b;
   color: #ffebb3;
-  padding: 4rem 0;
-
+  padding: 2.4rem 0;
+  height: calc(100vh - 330px);
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  gap: 3.2rem;
   align-items: center;
+  overflow-y: auto;
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.list ul {
+  list-style: none;
+  width: 80%;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  justify-content: center;
+  align-content: start;
+  padding: 0 2.4rem;
+  margin-bottom: 2rem;
+}
+
+.actions {
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 1.2rem 0;
+  background-color: #5a3e2b;
+  border-top: 1px solid #76c7ad33;
+  z-index: 1;
 }
 
 .actions button,
@@ -89,18 +120,6 @@ input {
   font-size: 1.4rem;
   font-weight: 700;
   margin: 0 0.8rem;
-}
-
-.list ul {
-  list-style: none;
-  width: 80%;
-  overflow: scroll;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.2rem;
-  justify-content: center;
-  align-content: start;
 }
 
 .list li {
@@ -128,5 +147,191 @@ input[type="checkbox"] {
   background-color: #76c7ad;
   text-align: center;
   font-weight: 700;
-  padding: 3.2rem 0;
+  padding: 2rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  padding-bottom: 2.4rem;
+  background-color: #f4a226;
+}
+
+.nav button {
+  background-color: #ffebb3;
+  color: #5a3e2b;
+  padding: 0.8rem 2.4rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.nav button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav button.active {
+  background-color: #e5771f;
+  color: #ffebb3;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.home {
+  background-color: #5a3e2b;
+  min-height: 585px;
+  height: 100%;
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.create-trip {
+  text-align: center;
+}
+
+.home h2 {
+  color: #ffebb3;
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+}
+
+.trip-form {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.trip-form input {
+  min-width: 300px;
+}
+
+.trips-list {
+  width: 100%;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.trips-list ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.trips-list li {
+  background-color: #ffebb3;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+  gap: 1.2rem;
+}
+
+.trips-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.trip-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.trip-name {
+  font-size: 2rem;
+  color: #5a3e2b;
+  font-weight: 600;
+}
+
+.delete-trip {
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+  font-size: 1.8rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-trip:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.trips-list li.active {
+  background-color: #e5771f;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.trips-list li.active span {
+  color: #ffebb3;
+}
+
+.trips-list li.active .items-count {
+  background-color: #5a3e2b;
+}
+
+.trips-list li span {
+  color: #5a3e2b;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.items-count {
+  background-color: #76c7ad;
+  padding: 0.4rem 1.2rem;
+  border-radius: 1rem;
+}
+
+.no-trips {
+  text-align: center;
+  color: #ffebb3;
+  font-size: 1.8rem;
+  font-style: italic;
+}
+
+.trips-list h2 {
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+
+.clear-all {
+  background-color: #e5771f;
+  color: #ffebb3;
+  padding: 1.2rem 2.4rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 2.4rem;
+  font-size: 1.6rem;
+}
+
+.clear-all:hover {
+  background-color: #5a3e2b;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

@@ -1,7 +1,7 @@
 import Item from "./Item";
 import { useState } from "react";
 
-function PackingList({ items, setItems, onDeleteItem, onToggleItem }) {
+function PackingList({ items, onDeleteItem, onToggleItem }) {
   const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
@@ -20,7 +20,10 @@ function PackingList({ items, setItems, onDeleteItem, onToggleItem }) {
     const confirmed = window.confirm(
       "Are you sure you want to delete all items?"
     );
-    if (confirmed) setItems([]);
+    if (confirmed) {
+      // Delete all items one by one to trigger the same behavior as individual deletion
+      items.forEach(item => onDeleteItem(item.id));
+    }
   }
 
   return (
@@ -42,8 +45,9 @@ function PackingList({ items, setItems, onDeleteItem, onToggleItem }) {
           <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
         </select>
-
-        <button onClick={clearList}>Clear List</button>
+        {items.length > 0 && (
+          <button onClick={clearList}>Clear List</button>
+        )}
       </div>
     </div>
   );
