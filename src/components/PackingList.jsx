@@ -1,7 +1,7 @@
 import Item from "./Item";
 import { useState } from "react";
 
-function PackingList({ items, onDeleteItem, onToggleItem }) {
+function PackingList({ items = [], onDeleteItem, onToggleItem }) {
   const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
@@ -21,7 +21,6 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
       "Are you sure you want to delete all items?"
     );
     if (confirmed) {
-      // Delete all items one by one to trigger the same behavior as individual deletion
       items.forEach(item => onDeleteItem(item.id));
     }
   }
@@ -29,7 +28,7 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
   return (
     <div className="list">
       <ul>
-        {sortedItems.map((item) => (
+        {sortedItems && sortedItems.map((item) => (
           <Item
             item={item}
             key={item.id}
@@ -39,16 +38,16 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
         ))}
       </ul>
 
-      <div className="actions">
-        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-          <option value="input">Sort by input order</option>
-          <option value="description">Sort by description</option>
-          <option value="packed">Sort by packed status</option>
-        </select>
-        {items.length > 0 && (
+      {items.length > 0 && (
+        <div className="actions">
+          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <option value="input">Sort by input order</option>
+            <option value="description">Sort by description</option>
+            <option value="packed">Sort by packed status</option>
+          </select>
           <button onClick={clearList}>Clear List</button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
