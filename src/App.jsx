@@ -8,12 +8,17 @@ import Stats from "./components/Stats";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 
-// Component for the trip page
-function TripPage({ trips, onAddItem, onDeleteItem, onToggleItem }) {
+function TripPage({ trips, onAddItem, onDeleteItem, onToggleItem, setCurrentTripId }) {
   const { tripName } = useParams();
   const currentTrip = trips.find(
     trip => trip.name.toLowerCase().replace(/\s+/g, '-') === tripName
   );
+
+  useEffect(() => {
+    if (currentTrip) {
+      setCurrentTripId(currentTrip.id);
+    }
+  }, [currentTrip, setCurrentTripId]);
 
   if (!currentTrip) return <Navigate to="/" replace />;
 
@@ -43,12 +48,10 @@ function App() {
   const navigate = useNavigate();
   const currentTrip = trips.find(trip => trip.id === currentTripId);
 
-  // Save trips to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("trips", JSON.stringify(trips));
   }, [trips]);
 
-  // Save current trip ID to localStorage
   useEffect(() => {
     localStorage.setItem("currentTripId", currentTripId);
   }, [currentTripId]);
@@ -58,7 +61,6 @@ function App() {
   }
 
   function handleDeleteTrip(tripId) {
-    const tripToDelete = trips.find(t => t.id === tripId);
     if (tripId === currentTripId) {
       setCurrentTripId(null);
       navigate('/');
@@ -101,14 +103,14 @@ function App() {
     );
   }
 
-  function handleNavigate(page, tripId = null) {
+  function handleNavigate(page, tripId) {
     if (page === "home") {
       setCurrentTripId(null);
       navigate('/');
-    } else if (tripId) {
-      setCurrentTripId(tripId);
+    } else {
       const trip = trips.find(t => t.id === tripId);
       if (trip) {
+        setCurrentTripId(tripId);
         navigate(`/${trip.name.toLowerCase().replace(/\s+/g, '-')}`);
       }
     }
@@ -139,6 +141,7 @@ function App() {
               onAddItem={handleAddItem}
               onDeleteItem={handleDeleteItem}
               onToggleItem={handleToggleItem}
+              setCurrentTripId={setCurrentTripId}
             />
           }
         />
